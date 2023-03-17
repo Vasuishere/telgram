@@ -1,0 +1,26 @@
+Index: Python_Bot.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Python_Bot.py b/Python_Bot.py
+--- a/Python_Bot.py	
++++ b/Python_Bot.py	(date 1678938350627)
+@@ -77,7 +77,7 @@
+     print("file flow initiated !")
+     query= update.callback_query
+     global Global_dynamic_paths
+-    dynamic_path=Global_dynamic_paths+query.data
++    dynamic_path=os.path.join(Global_dynamic_paths,query.data)
+     await query.answer()
+     await query.edit_message_text(text="Choose a file to download!!", reply_markup=Inline_Keyboard_Maker(dynamic_path, row_count=2, back_path="continue"))
+     Global_dynamic_paths=dynamic_path
+@@ -87,7 +87,7 @@
+     print("final flow initiated!")
+     query = update.callback_query
+     global Global_dynamic_paths
+-    file_path = os.path.join(Global_dynamic_paths,f"/{query.data}")
++    file_path = os.path.join(Global_dynamic_paths,query.data)
+     print(file_path)
+ 
+     with open(file_path, "rb") as f:
